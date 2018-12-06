@@ -21,14 +21,25 @@ class ContactListPage extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (builder, index) {
         final contact = contacts[index];
-        return _ContactListItem(contact: contact);
+        EdgeInsets topMargin;
+
+        if (index == 0) {
+          topMargin = EdgeInsets.only(top: 16.0);
+        } else {
+          topMargin = EdgeInsets.all(0.0);
+        }
+
+        return Container(
+          margin: topMargin,
+          child: _ContactListItem(contact: contact),
+        );
       },
       itemCount: contacts.length,
     );
   }
 }
 
-class _ContactListItem extends StatelessWidget {
+class _ContactListItem extends StatefulWidget {
   final Contact contact;
 
   const _ContactListItem({Key key, this.contact})
@@ -36,16 +47,25 @@ class _ContactListItem extends StatelessWidget {
         super(key: key);
 
   @override
+  _ContactListItemState createState() {
+    return new _ContactListItemState();
+  }
+}
+
+class _ContactListItemState extends State<_ContactListItem>
+    with TickerProviderStateMixin {
+  @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
+      margin: EdgeInsets.symmetric(
+          vertical: 4.0, horizontal: 16.0),
       child: Hero(
-        tag: contact.displayName,
+        tag: widget.contact.displayName,
         child: Material(
           color: Colors.white,
           borderRadius: BorderRadius.circular(6.0),
           shadowColor: Colors.white54,
-          elevation: 4.0,
+          elevation: 1.0,
           child: InkWell(
             borderRadius: BorderRadius.circular(6.0),
             onTap: () {
@@ -53,21 +73,28 @@ class _ContactListItem extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) {
                     return ContactDetailPage(
-                      contact: contact,
+                      contact: widget.contact,
                     );
                   },
                 ),
               );
             },
             child: Container(
-              padding: EdgeInsets.all(20.0),
+              padding: EdgeInsets.all(12.0),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Icon(
-                    Icons.person,
-                    color: Colors.grey,
-                    size: 40.0,
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      shape: BoxShape.circle,
+                    ),
+                    padding: EdgeInsets.all(4.0),
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.grey[400],
+                      size: 36.0,
+                    ),
                   ),
                   Spaces.w12,
                   Expanded(
@@ -76,17 +103,19 @@ class _ContactListItem extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           "Contact",
+                          //widget.contact.displayName,
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
-                        Spaces.h12,
+                        Spaces.h4,
                         Text(
-                          //contact.phones.toList()[0].value,
+                          //widget.contact.phones.toList()[0].value,
                           "1234567890",
                           style: TextStyle(
                             fontSize: 16.0,
+                            color: Colors.grey,
                           ),
                         ),
                       ],

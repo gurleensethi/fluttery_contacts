@@ -17,8 +17,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-        fontFamily: 'Quicksand',
+        scaffoldBackgroundColor: const Color(0xFFF6F6F6),
+        fontFamily: 'Montserrat',
+        textTheme: Theme.of(context).textTheme.apply(
+          displayColor: const Color(0xFF6E6E6E),
+          bodyColor: const Color(0xFF6E6E6E),
+        )
       ),
       home: HomePage(),
     );

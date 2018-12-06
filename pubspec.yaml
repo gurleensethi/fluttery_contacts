@@ -55,9 +55,14 @@ flutter:
     # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Quicksand
+    - family: Montserrat
       fonts:
-        - asset: fonts/Quicksand-Bold.ttf
-        - asset: fonts/Quicksand-Light.ttf
-        - asset: fonts/Quicksand-Medium.ttf
-        - asset: fonts/Quicksand-Regular.ttf
+        - asset: fonts/Montserrat-Black.ttf
+        - asset: fonts/Montserrat-Bold.ttf
+        - asset: fonts/Montserrat-ExtraBold.ttf
+        - asset: fonts/Montserrat-ExtraLight.ttf
+        - asset: fonts/Montserrat-Light.ttf
+        - asset: fonts/Montserrat-Medium.ttf
+        - asset: fonts/Montserrat-Regular.ttf
+        - asset: fonts/Montserrat-SemiBold.ttf
+        - asset: fonts/Montserrat-Thin.ttf

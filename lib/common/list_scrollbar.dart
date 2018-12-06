@@ -44,11 +44,7 @@ class ListScrollbarState extends State<ListScrollbar>
         AnimationController(vsync: this, duration: Duration(milliseconds: 200));
     _textSizeAnimation =
         Tween(begin: 20.0, end: 60.0).animate(_animationController);
-    _animationController.addListener(() {
-      setState(() {
-
-      });
-    });
+    _animationController.addListener(() => setState(() {}));
 
     widget.controller.addListener(() {
       setState(() {
@@ -58,6 +54,13 @@ class ListScrollbarState extends State<ListScrollbar>
 
         if (_topOffset > maxScrollOffset) _topOffset = maxScrollOffset;
 
+        _updateLabel();
+      });
+    });
+
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
         _updateLabel();
       });
     });
